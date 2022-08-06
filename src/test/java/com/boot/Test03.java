@@ -60,6 +60,10 @@ public class Test03 {
 
         QueryWrapper<Order> objectQueryWrapper = new QueryWrapper<>();
         objectQueryWrapper.between("order_id",762681526704930816L,862681526830759936L);
+
+        //lt是小于、gt是大于，这些inline策略都是不支持的
+//        objectQueryWrapper.lt("order_id",762681526704930816L);
+
         List<Order> orders = orderMapper.selectList(objectQueryWrapper);
 
         orders.forEach(System.out::println);
