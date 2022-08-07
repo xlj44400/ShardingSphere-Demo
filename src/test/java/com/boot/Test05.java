@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-public class Test04 {
+public class Test05 {
 
     @Autowired
     private OrderMapper orderMapper;
