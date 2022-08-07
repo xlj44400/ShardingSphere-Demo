@@ -15,9 +15,9 @@ public class Test05 {
     @Autowired
     private OrderMapper orderMapper;
 
-    //根据standard策略进行分库和分表
+    //根据complex策略进行分库和分表
     @Test
-    void addOrderBystandardShardingTableAndDatabase(){
+    void addOrderBycomplexShardingTableAndDatabase(){
 
         for (int i = 0; i < 10; i++) {
 
@@ -31,32 +31,22 @@ public class Test05 {
 
     }
 
-    //查询指定order_id的数据
+    //查询指定order_id和user_id的数据（并且order_id和user_id同时都是分片键）
     @Test
-    void selectOrderBystandardShardingTableAndDatabase_orderid(){
+    void selectOrderBystandardShardingTableAndDatabase_orderidAndUserid(){
 
+        //select * from order where order_id between 663033347873046528L and 763033347873046528L and user_id=1003
         QueryWrapper<Order> objectQueryWrapper = new QueryWrapper<>();
-        objectQueryWrapper.eq("order_id",763033347873046528L);
+
+        objectQueryWrapper.between("order_id",663033347873046528L,763033347873046528L);
+
+        objectQueryWrapper.eq("user_id",1003L);
+
         List<Order> orders = orderMapper.selectList(objectQueryWrapper);
 
         orders.forEach(System.out::println);
 
     }
 
-    //查询order_id在一个范围的数据(inline策略会报错）
-    @Test
-    void selectOrderByStandardShardingTableAndDatabase_between(){
-
-        QueryWrapper<Order> objectQueryWrapper = new QueryWrapper<>();
-        objectQueryWrapper.between("order_id",762681526704930816L,862681526830759936L);
-
-        //lt是小于、gt是大于，这些inline策略都是不支持的
-//        objectQueryWrapper.lt("order_id",762681526704930816L);
-
-        List<Order> orders = orderMapper.selectList(objectQueryWrapper);
-
-        orders.forEach(System.out::println);
-
-    }
 
 }
