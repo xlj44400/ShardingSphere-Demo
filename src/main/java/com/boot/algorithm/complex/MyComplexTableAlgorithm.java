@@ -1,8 +1,8 @@
 package com.boot.algorithm.complex;
 
 import com.google.common.collect.Range;
-import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingAlgorithm;
-import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.complex.ComplexKeysShardingAlgorithm;
+import org.apache.shardingsphere.sharding.api.sharding.complex.ComplexKeysShardingValue;
 
 import java.math.BigInteger;
 import java.util.*;
@@ -58,4 +58,13 @@ public class MyComplexTableAlgorithm implements ComplexKeysShardingAlgorithm<Lon
 
     }
 
+    @Override
+    public void init(Properties properties) {
+        // 空实现
+    }
+
+    @Override
+    public Properties getProps() {
+        return new Properties();
+    }
 }

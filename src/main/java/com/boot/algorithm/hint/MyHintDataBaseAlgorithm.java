@@ -1,11 +1,12 @@
 package com.boot.algorithm.hint;
 
-import org.apache.shardingsphere.api.sharding.hint.HintShardingAlgorithm;
-import org.apache.shardingsphere.api.sharding.hint.HintShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.hint.HintShardingAlgorithm;
+import org.apache.shardingsphere.sharding.api.sharding.hint.HintShardingValue;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Properties;
 
 //HintShardingAlgorithm的泛型就是addDatabaseShardingValue方法的value的类型（我们通常使用Integer）
 public class MyHintDataBaseAlgorithm implements HintShardingAlgorithm<Long> {
@@ -20,5 +21,15 @@ public class MyHintDataBaseAlgorithm implements HintShardingAlgorithm<Long> {
             return datasources;
         }
         throw new UnsupportedOperationException("MyHintDataBaseAlgorithm没有找到数据源名");
+    }
+
+    @Override
+    public void init(Properties properties) {
+        // 空实现
+    }
+
+    @Override
+    public Properties getProps() {
+        return new Properties();
     }
 }

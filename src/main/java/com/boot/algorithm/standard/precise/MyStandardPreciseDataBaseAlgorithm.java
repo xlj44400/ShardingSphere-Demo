@@ -1,10 +1,12 @@
 package com.boot.algorithm.standard.precise;
 
-import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
-import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.PreciseShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.RangeShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.StandardShardingAlgorithm;
 
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Properties;
 
 /**
  * 该类适用于=、in操作
@@ -12,7 +14,7 @@ import java.util.Collection;
 
 
 // MyStandardPreciseDataBaseAlgorithm：自定义分数据库的standard策略的精准分片类
-public class MyStandardPreciseDataBaseAlgorithm implements PreciseShardingAlgorithm<Long> {
+public class MyStandardPreciseDataBaseAlgorithm implements StandardShardingAlgorithm<Long> {
 
     /**
      *
@@ -37,5 +39,20 @@ public class MyStandardPreciseDataBaseAlgorithm implements PreciseShardingAlgori
             return dataSourceName;
         }
         throw new UnsupportedOperationException("MyStandardPreciseDataBaseAlgorithm没有找到指定数据源名称");
+    }
+
+    @Override
+    public Collection<String> doSharding(Collection<String> collection, RangeShardingValue<Long> rangeShardingValue) {
+        return null;
+    }
+
+    @Override
+    public void init(Properties properties) {
+        // 空实现
+    }
+
+    @Override
+    public Properties getProps() {
+        return new Properties();
     }
 }

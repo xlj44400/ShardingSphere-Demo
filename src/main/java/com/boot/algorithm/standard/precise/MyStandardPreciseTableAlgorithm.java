@@ -1,10 +1,12 @@
 package com.boot.algorithm.standard.precise;
 
-import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
-import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.PreciseShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.RangeShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.StandardShardingAlgorithm;
 
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Properties;
 
 /**
  * 该类适用于=、in操作
@@ -12,7 +14,7 @@ import java.util.Collection;
 
 //1：MyStandardPreciseTableAlgorithm：自定义分表的standard策略的精准分片类
 //2：PreciseShardingAlgorithm接口的泛型是分片键的类型（我们的分片键是order_id它是Long类型的所以就是Long）
-public class MyStandardPreciseTableAlgorithm implements PreciseShardingAlgorithm<Long> {
+public class MyStandardPreciseTableAlgorithm implements StandardShardingAlgorithm<Long> {
 
     /**
      * 由于是精准分片，所以返回的是一个字符串（字符串就是指定的表名）
@@ -41,6 +43,21 @@ public class MyStandardPreciseTableAlgorithm implements PreciseShardingAlgorithm
             return tableName; //返回指定的表名
         }
         throw new UnsupportedOperationException("MyStandardPreciseTableAlgorithm没有找到指定的表名");
+    }
+
+    @Override
+    public Collection<String> doSharding(Collection<String> collection, RangeShardingValue<Long> rangeShardingValue) {
+        return null;
+    }
+
+    @Override
+    public void init(Properties properties) {
+        // 空实现
+    }
+
+    @Override
+    public Properties getProps() {
+        return new Properties();
     }
 
 }

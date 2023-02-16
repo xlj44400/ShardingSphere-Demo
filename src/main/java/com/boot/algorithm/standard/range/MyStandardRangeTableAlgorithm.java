@@ -1,11 +1,13 @@
 package com.boot.algorithm.standard.range;
 
-import org.apache.shardingsphere.api.sharding.standard.RangeShardingAlgorithm;
-import org.apache.shardingsphere.api.sharding.standard.RangeShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.PreciseShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.RangeShardingValue;
+import org.apache.shardingsphere.sharding.api.sharding.standard.StandardShardingAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Properties;
 
 
 /**
@@ -14,7 +16,7 @@ import java.util.List;
 
 //1：MyStandardRangeTableAlgorithm：自定义分表的standard策略的范围分片类
 //2：RangeShardingAlgorithm接口的泛型是分片键的类型（我们的分片键是order_id它是Long类型的所以就是Long）
-public class MyStandardRangeTableAlgorithm implements RangeShardingAlgorithm<Long> {
+public class MyStandardRangeTableAlgorithm implements StandardShardingAlgorithm<Long> {
 
     /**
      * 由于是范围分片，所以返回的是一个集合（集合里面的值是表名）
@@ -40,4 +42,18 @@ public class MyStandardRangeTableAlgorithm implements RangeShardingAlgorithm<Lon
         return tables;
     }
 
+    @Override
+    public String doSharding(Collection<String> collection, PreciseShardingValue<Long> preciseShardingValue) {
+        return null;
+    }
+
+    @Override
+    public Properties getProps() {
+        return null;
+    }
+
+    @Override
+    public void init(Properties properties) {
+
+    }
 }
