@@ -2,7 +2,7 @@ package com.boot;
 
 import com.boot.dao.OrderMapper;
 import com.boot.entity.Order;
-import org.apache.shardingsphere.api.hint.HintManager;
+import org.apache.shardingsphere.infra.hint.HintManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

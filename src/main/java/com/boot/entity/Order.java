@@ -1,6 +1,8 @@
 package com.boot.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,10 +23,10 @@ import java.io.Serializable;
 @Accessors(chain = true) //开启链式编程
 //由于mybatis-plus是在mybatis的基础上建立的，所以也有下面的通病（就是order本身就是关键字，无法被解析，所以需要加上``符号）。
 //如果不加上@TableName指定表名，默认的表名就是该类的名称。
-@TableName("`order`")
+@TableName("`t_order`")
 public class Order implements Serializable {
 
-    @TableField("order_id")
+    @TableId(value = "order_id", type = IdType.NONE)
     private Long orderId; //订单id
 
     @TableField("order_info")

@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+// 5.2版本调整正常  测试 inline分库分表 2个库 每个库3个表
 @SpringBootTest
 public class Test03 {
 
@@ -46,7 +47,7 @@ public class Test03 {
     void selectOrderByinlineShardingTableAndDatabase_orderid(){
 
         QueryWrapper<Order> objectQueryWrapper = new QueryWrapper<>();
-        objectQueryWrapper.eq("order_id",762681526788816896L);
+        objectQueryWrapper.eq("order_id",1626477133131509761L);
         List<Order> orders = orderMapper.selectList(objectQueryWrapper);
 
         orders.forEach(System.out::println);
